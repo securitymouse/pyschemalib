@@ -1,6 +1,8 @@
 # python-model-library
 Python Model Library
 
+Release: Beta
+
 This is a small library designed to make it simpler to build API integrations.
 Most modern APIs use some form of JSON for communication over a TLS channel.
 This library helps speed the development of structures in Python that mimick
