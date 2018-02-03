@@ -128,7 +128,7 @@ class Model(dict):
         if isinstance(x, slice):
             print("SLICE? {0}".format(str(x)))
             return b''
-        #print("got x={0}, x={1}".format(type(x), str(x)))
+        print("got x={0}, x={1}".format(type(x), str(x)))
 
         if ((x in self) and
            (x.type not in self.__BUILTIN__)):
@@ -163,7 +163,7 @@ class Model(dict):
                 o.update(dict.__getitem__(self, x))
                 return o
 
-        elif ((x not in self) and (type(x) != str and issubclass(x, Schema) and (x.required is True))):
+        elif ((x not in self) and (issubclass(x, Schema) and (x.required is True))):
             return x.type()
 
         # If the type is a builtin, just return the value
