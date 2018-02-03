@@ -70,7 +70,7 @@ class Model(dict):
         r = []
         l = self._getmembers()
         for i in l:
-            if ((i not in self) and (i.required is True)) or (i in self):
+            if ((i not in self) and (issubclass(i, Schema) and (i.required is True))) or (i in self):
                 r += [i]
 
         return r
@@ -93,7 +93,7 @@ class Model(dict):
                 continue
 
             # Feign an object.
-            if k not in self and k.required is True:
+            if k not in self and (issubclass(k, Schema) and (k.required is True)):
                 yield (k, k.type())
             elif k in self:
                 yield (k, self[k])
@@ -163,7 +163,7 @@ class Model(dict):
                 o.update(dict.__getitem__(self, x))
                 return o
 
-        elif ((x not in self) and (x.required is True)):
+        elif ((x not in self) and (issubclass(x, Schema) and (x.required is True))):
             return x.type()
 
         # If the type is a builtin, just return the value
