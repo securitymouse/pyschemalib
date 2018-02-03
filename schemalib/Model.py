@@ -125,7 +125,10 @@ class Model(dict):
 
     def __getitem__(self, x):
         # Handle custom types
-        print("got x={0}, x={1}".format(type(x), str(x)))
+        if isinstance(x, slice):
+            return ''
+        #print("got x={0}, x={1}".format(type(x), str(x)))
+
         if ((x in self) and
            (x.type not in self.__BUILTIN__)):
             o = None
