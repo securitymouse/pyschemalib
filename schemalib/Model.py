@@ -126,7 +126,7 @@ class Model(dict):
     def __getitem__(self, x):
         # Handle custom types
         if isinstance(x, slice):
-            return ''
+            return b''
         #print("got x={0}, x={1}".format(type(x), str(x)))
 
         if ((x in self) and
