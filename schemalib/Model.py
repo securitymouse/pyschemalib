@@ -24,6 +24,7 @@ class Model(dict):
         dict,
         tuple,
         object,
+        slice,
         ]
 
     __iter_i = 0
