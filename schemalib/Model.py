@@ -8,7 +8,7 @@ class StrictTypeException(Exception):
 
 class Schema(object):
     required = False
-    strict = True
+    strict = False
     hidden = False
     subtype = None
     type = str
