@@ -243,6 +243,8 @@ class Model(dict):
 
                     s += ["\"{0}\": {1}".format(k, v)]
                 else:
+                    if isinstance(v, str):
+                        v = v.replace('"', '\\"')
                     s += ["\"{0}\": \"{1}\"".format(k, v)]
 
         s = ",".join(s)
@@ -261,6 +263,8 @@ class Model(dict):
                 if isinstance(v, int) or isinstance(v, float):
                     s += ["{0}".format(v)]
                 else:
+                    if isinstance(v, str):
+                        v = v.replace('"', '\\"')
                     s += ["\"{0}\"".format(v)]
 
         s = ",".join(s)
