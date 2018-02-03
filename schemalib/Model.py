@@ -124,6 +124,7 @@ class Model(dict):
 
     def __getitem__(self, x):
         # Handle custom types
+        print("got x={0}".format(type(x)))
         if ((x in self) and
            (x.type not in self.__BUILTIN__)):
             o = None
