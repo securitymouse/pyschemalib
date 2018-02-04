@@ -44,7 +44,7 @@ class Model(dict):
 
         return False
 
-    def __instring(self):
+    def instring(self):
         return self.__tostring
 
     def __init__(self, *args, **kw):
