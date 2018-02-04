@@ -29,6 +29,7 @@ class Model(dict):
 
     __iter_i = 0
     __iter_l = []
+    __tostring = False
 
     def _getmembers(self):
         x = inspect.getmembers(self.__class__, lambda a: Model._find(a))
@@ -187,6 +188,8 @@ class Model(dict):
 
     def __str__(self):
         d = {}
+        self.__tostring = True
+
         for i in self:
             # __iter__ should always return the set of attributes based on the
             # Schema class.
@@ -203,12 +206,16 @@ class Model(dict):
             q = i.required
             t = i.type
 
+            # Don't use __getitem__ because it may unpickle things that we
+            # presume will be handled properly.
             if i in self:
                 d[i.__name__] = self[i]
             elif q is True:
                 d[i.__name__] = t()
 
-        return self.__json_dumps(d)
+        x = self.__json_dumps(d)
+        self.__tostring = False
+        return x
 
     def className(self):
         return self.__class__.__name__
