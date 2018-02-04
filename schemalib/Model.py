@@ -44,6 +44,9 @@ class Model(dict):
 
         return False
 
+    def __instring(self):
+        return self.__tostring
+
     def __init__(self, *args, **kw):
         # Init the dict with nothing in it.
         dict.__init__(self, (), **kw)
