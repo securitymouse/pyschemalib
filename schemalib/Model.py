@@ -214,7 +214,13 @@ class Model(dict):
             if i in self:
                 d[i.__name__] = self[i]
             elif q is True:
-                d[i.__name__] = t()
+                # If the type is required but hasn't been set, and has a get
+                # function, let it autogenerate the variable using the get
+                # function.
+                if getattr(i, 'get'):
+                    d[i.__name__] = i.get(self[self.data])
+                else:
+                    d[i.__name__] = t()
 
         x = self.__json_dumps(d)
         self.__tostring = False
