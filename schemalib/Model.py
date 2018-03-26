@@ -218,6 +218,8 @@ class Model(dict):
                 # function, let it autogenerate the variable using the get
                 # function.
                 if getattr(i, 'get'):
+                    # XXX Note that this feature requires the special parameter
+                    # self.data exists and has usable data.
                     d[i.__name__] = i.get(self[self.data])
                 else:
                     d[i.__name__] = t()
